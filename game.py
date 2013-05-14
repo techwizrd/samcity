@@ -4,10 +4,14 @@ import pygame
 
 BOARD_LENGTH = 64
 OFFSET = 8
-IMAGES = "grass", "road_4way", "road_eastnorth", "road_eastsouth", "road_hor", "road_northeastsouth", "road_ver", "road_westeastsouth", "road_westnortheast", "road_westnorth", "road_westsouthnorth", "road_westsouth"
+IMAGES = ("grass", "road_4way", "road_eastnorth", "road_eastsouth", "road_hor",
+          "road_northeastsouth", "road_ver", "road_westeastsouth",
+          "road_westnortheast", "road_westnorth", "road_westsouthnorth",
+          "road_westsouth")
 
 DIRECTIONS = namedtuple('DIRECTIONS',
                         ['North', 'South', 'East', 'West'])(0, 1, 2, 3)
+
 
 class Tile(object):
     def __init__(self, kind="empty", img="grass"):
@@ -16,16 +20,16 @@ class Tile(object):
 
 
 def init_images(tiles_used):
-    images = dict()
-    for t in tiles_used:
-        images[t] = pygame.image.load("res/" + t + "_tile.png").convert()
+    images = {}
+    for tile in tiles_used:
+        images[tile] = pygame.image.load("res/" + tile + "_tile.png").convert()
     return images
 
 
 def make_board():
-    spots = [[] for i in range(BOARD_LENGTH)]
+    spots = [[] for _ in xrange(BOARD_LENGTH)]
     for row in spots:
-        for i in range(BOARD_LENGTH):
+        for _ in xrange(BOARD_LENGTH):
             row.append(Tile())
     return spots
 
@@ -33,7 +37,7 @@ def make_board():
 def display_board(screen, board, images):
     for x, row in enumerate(board):
         for y, tile in enumerate(row):
-            screen.blit(images[tile.img], (x*OFFSET, y*OFFSET))
+            screen.blit(images[tile.img], (x * OFFSET, y * OFFSET))
     pygame.display.update()
 
 
@@ -57,6 +61,7 @@ def flush_events(pygame_events):
             return 1
     return 0
 
+
 def validate_roads(points, board):
     valid_roads = []
     if points:
@@ -71,7 +76,7 @@ def validate_roads(points, board):
 
 def adjacent_roads(pos, board):
     x, y = pos
-    points = ((x, y-1), (x+1, y), (x, y+1), (x-1, y))
+    points = ((x, y - 1), (x + 1, y), (x, y + 1), (x - 1, y))
     points = validate_points(points)
     return validate_roads(points, board)
 
@@ -119,7 +124,7 @@ def process_roads(pos, board, master_roads):
     if len(roads) == 0:
         board[x][y] = Tile("road", "road_hor")
     else:
-        dirs = get_directions(pos, roads) 
+        dirs = get_directions(pos, roads)
         board[x][y] = master_roads[pick_road_img(dirs)]
         for road in roads:
             n_roads = adjacent_roads(road, board)
