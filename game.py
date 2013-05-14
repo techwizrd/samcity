@@ -133,25 +133,23 @@ def process_roads(pos, board, master_roads):
 
 
 def init_roads():
-    roads = list()
-    roads.append(Tile("road", "road_hor")) # None
-    roads.append(Tile("road", "road_hor")) # West
-    roads.append(Tile("road", "road_hor")) # East
-    roads.append(Tile("road", "road_hor")) # East, west
-    roads.append(Tile("road", "road_ver")) # South
-    roads.append(Tile("road", "road_westsouth")) # South, west
-    roads.append(Tile("road", "road_eastsouth")) # South, east
-    roads.append(Tile("road", "road_westeastsouth")) # South, east, west
-    roads.append(Tile("road", "road_ver")) # North
-    roads.append(Tile("road", "road_westnorth")) # North, west
-    roads.append(Tile("road", "road_eastnorth")) # North, east
-    roads.append(Tile("road", "road_westnortheast")) # North, east, west
-    roads.append(Tile("road", "road_ver")) # North, south
-    roads.append(Tile("road", "road_westsouthnorth")) # North, south, west
-    roads.append(Tile("road", "road_northeastsouth")) # North, south, east
-    roads.append(Tile("road", "road_4way")) # North, south, east, west
-    return roads
-    
+    return (Tile("road", "road_hor"),  # None
+            Tile("road", "road_hor"),  # West
+            Tile("road", "road_hor"),  # East
+            Tile("road", "road_hor"),  # East, west
+            Tile("road", "road_ver"),  # South
+            Tile("road", "road_westsouth"),  # South, west
+            Tile("road", "road_eastsouth"),  # South, east
+            Tile("road", "road_westeastsouth"),  # South, east, west
+            Tile("road", "road_ver"),  # North
+            Tile("road", "road_westnorth"),  # North, west
+            Tile("road", "road_eastnorth"),  # North, east
+            Tile("road", "road_westnortheast"),  # North, east, west
+            Tile("road", "road_ver"),  # North, south
+            Tile("road", "road_westsouthnorth"),  # North, south, west
+            Tile("road", "road_northeastsouth"),  # North, south, east
+            Tile("road", "road_4way"),  # North, south, east, west
+            )
 
 
 def main():
