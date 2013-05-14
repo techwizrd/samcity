@@ -41,18 +41,11 @@ def display_board(screen, board, images):
     pygame.display.update()
 
 
+in_board = lambda px, py: 0 <= px < BOARD_LENGTH and 0 <= py < BOARD_LENGTH
+
+
 def validate_points(points):
-    valid_points = []
-    for point in points:
-        x, y = point
-        valid = True
-        if x < 0 or y < 0:
-            valid = False
-        if x >= BOARD_LENGTH or y >= BOARD_LENGTH:
-            valid = False
-        if valid:
-            valid_points.append(point)
-    return valid_points
+    return [point for point in points if in_board(*point)]
 
 
 def flush_events(pygame_events):
