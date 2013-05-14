@@ -69,14 +69,13 @@ def validate_roads(points, board):
 
 def adjacent_roads(pos, board):
     x, y = pos
-    points = ((x, y - 1), (x + 1, y), (x, y + 1), (x - 1, y))
-    points = validate_points(points)
+    points = validate_points(((x, y - 1), (x + 1, y), (x, y + 1), (x - 1, y)))
     return validate_roads(points, board)
 
 
 def process_mouseclick(pos, board, roads):
-    x, y = pos[0] // 8, pos[1] // 8
-    process_roads((x, y), board, roads)
+    x, y = pos
+    process_roads((x // 8, y  // 8), board, roads)
 
 
 def get_directions(pos, points):
